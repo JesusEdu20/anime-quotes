@@ -1,5 +1,5 @@
 async function getQuoteByAnimeName(name){
-    const response = await fetch(`https://animechan.xyz/api/random/anime?title=${name}`)
+    const response = await fetch(`https://animechan.xyz/api/random/anime?title=${name}`);
     const quotes = await response.json()
      
     return quotes

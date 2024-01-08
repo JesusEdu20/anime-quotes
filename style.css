@@ -100,6 +100,7 @@ main{
         border: 1px solid rgb(61, 65, 66);
         border-radius: 8px;
         overflow-y: auto;
+        font-size: 1.2rem;
     }
 }
 
@@ -116,7 +117,7 @@ main{
 
 
 .quote__item--loading{
-    background: linear-gradient(45deg, #27292c, #505052);
+    background: linear-gradient(45deg, #18191a, #505052);
     background-size: 400% 400%;
     animation: gradientBackground 10s ease infinite;
 }
