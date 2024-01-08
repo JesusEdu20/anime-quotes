@@ -1,12 +1,10 @@
 async function getQuoteByAnimeName(name){
-    console.log(name)
     const response = await fetch(`https://animechan.xyz/api/random/anime?title=${name}`)
     const quotes = await response.json()
      
     return quotes
 }
  
-
 async function displayQuote(animeTitle, quoteElement){
     const {anime, character, quote} = await getQuoteByAnimeName(animeTitle)
 
@@ -16,7 +14,8 @@ async function displayQuote(animeTitle, quoteElement){
       <p class="quote__anime-quote">${quote}</p>
     </div>` 
 
-    quoteElement.innerHTML = result
+    quoteElement.classList.remove("quote__item--loading")
+    quoteElement.innerHTML = result; 
 }
 
 function getElements (...classes){
@@ -26,13 +25,8 @@ function getElements (...classes){
 
 async function generateQuoteHandler(containerClass, inputClass, btnClass){
     const [quoteElement, inputElement, buttonElement] = getElements(containerClass, inputClass, btnClass);
-    buttonElement.addEventListener("click", () => {displayQuote(inputElement.value, quoteElement)})
+    buttonElement.addEventListener("click", () => {displayQuote(inputElement.value, quoteElement); quoteElement.classList.add("quote__item--loading")});
 }
 
 generateQuoteHandler("quote-container", "search-bar__input", "search-bar__btn");
-
-/* 
-{anime: 'Naruto', 
-character: 'Pain', 
-quote: 'Even children are forced to grow up in the face of pain.'}
-*/
+displayQuote(document.querySelector(".search-bar__input").placeholder, document.querySelector(".quote-container"));
